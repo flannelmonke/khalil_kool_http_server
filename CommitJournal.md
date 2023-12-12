@@ -18,3 +18,22 @@ Another thing I have learned is how to perform JSON encoding and decoding in Jav
 I've learned and applied the Singleton desing pattern. Applying this concept to my configurationManager.java file. Since we only need **one** configuration manager. See the code for the configuration manager class here [configurationManager.java](https://github.com/flannelmonke/khalil_kool_http_server/blob/main/src/main/java/com/khalil/httpserver/Config/configurationManager.java).
 
 So far I've done "the boring stuff" but I am having real fun dooing this. 
+
+## My second commit
+---
+It's coming along faster than I expected. In this commit I defined a ServerSocket by passing in the configuration we received from our http.json file. 
+
+I then defined a Socket object which, by using the accept() function, can tell my code to listen to a socket until it hears a reponse. Since this code uses one socket listener we can only handle one request from a browser. This can be fixed making our server multi-threaded.
+
+Next we defined out Input and Output Stream Objects. These will be used to receive requests and provide responses. Next for testing purposes I defined some simple HTML. Inside of a String, declared a constant String which is our CRLF.
+
+#### CRLF
+---
+This is not something I've seen a lot of using the before mentioned frameworks. I knew that every response had a header and body, where the body was the content and the header was the meta data. I just never knew how it was delimited. Which is done by the ASCII characters 13 and 10 served consecutively. 
+
+I also learned that the HTTP standard is required when writing your head and body and this standard is not very difficult to follow.
+
+#### How it's going
+
+So far on my third commit. The code runs and actually works. The only downfall is that everything is hard coded in my main function. However this is very easily fixable since we are going to be using the java.io package. Again though. The code runs, once you run it pauses after printing the start up message and the actually serves the HTML we gave it in that String. Also the funniest thing I've seen is writing raw HTML in another language and declaring it as a String.
+
