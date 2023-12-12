@@ -37,3 +37,6 @@ I also learned that the HTTP standard is required when writing your head and bod
 
 So far on my third commit. The code runs and actually works. The only downfall is that everything is hard coded in my main function. However this is very easily fixable since we are going to be using the java.io package. Again though. The code runs, once you run it pauses after printing the start up message and the actually serves the HTML we gave it in that String. Also the funniest thing I've seen is writing raw HTML in another language and declaring it as a String.
 
+Here is a screenshot of that.
+![image](https://github.com/flannelmonke/khalil_kool_http_server/assets/123114205/6131cdd3-a7a1-4ff9-9017-62e62e45b19d)
+
