@@ -26,7 +26,7 @@ public class ServerListenerThread extends Thread {
         try {
             while (serverSocket.isBound() && !serverSocket.isClosed()) {
                 Socket socket = serverSocket.accept();
-                LOGGER.info(" * Connection Accepted " + socket.getInetAddress());
+                LOGGER.log(Level.INFO, " * Connection Accepted {0}", socket.getInetAddress());
 
                 HttpConnectionWorkerThread workerThread = new HttpConnectionWorkerThread(socket);
                 workerThread.start();

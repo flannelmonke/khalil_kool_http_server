@@ -43,7 +43,7 @@ public class HttpConnectionWorkerThread extends Thread {
 
             inputStream.close();
             outputStream.close();
-        } catch (Exception e) {
+        } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "Problem with Communication", e);
 
         } finally {
