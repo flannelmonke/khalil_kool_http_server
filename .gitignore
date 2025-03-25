@@ -1,2 +1,6 @@
-#vscode settings file(can't be letting the world know that I use VSCode... or else they'll know that I didn't make this)
 .vscode/
+# Test results that serve no purpose to people cloning this repo lol
+target/generated-sources
+target/generated-test-sources
+target/maven-status
+target/surefire-reports
