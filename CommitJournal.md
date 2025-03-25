@@ -6,7 +6,7 @@ This project is a further study in the world of backend development. The framewo
 
 I am following a tutorial series from CodeFromScratch on YouTube, watch the first part [here](https://youtu.be/FNUdLeGfShU?si=iK85YJcIko2HyuXR).
 
-## My First Commit
+## My First Commit ()
 
 ---
 
@@ -23,7 +23,7 @@ I've learned and applied the Singleton desing pattern. Applying this concept to 
 
 So far I've done "the boring stuff" but I am having real fun dooing this.
 
-## My second commit
+## My second sync
 
 ---
 
@@ -41,14 +41,14 @@ This is not something I've seen a lot of using the before mentioned frameworks. 
 
 I also learned that the HTTP standard is required when writing your head and body and this standard is not very difficult to follow.
 
-### Third Commit
+### Third sync
 
 So far on my third commit. The code runs and actually works. The only downfall is that everything is hard coded in my main function. However this is very easily fixable since we are going to be using the java.io package. Again though. The code runs, once you run it pauses after printing the start up message and the actually serves the HTML we gave it in that String. Also the funniest thing I've seen is writing raw HTML in another language and declaring it as a String.
 
 Here is a screenshot of that.
 ![image](https://github.com/flannelmonke/khalil_kool_http_server/assets/123114205/6131cdd3-a7a1-4ff9-9017-62e62e45b19d)
 
-## Fourth Commit
+## Fourth sync
 
 This server is rapidly gaining functions I never thought I would understand let alone implement myself. In this commit, I've added two key pieces of functionality. Logging and Multi-Threaded request handling.
 
@@ -59,3 +59,11 @@ This feature has always burdened me. No one likes to implement logging, yet we a
 ### Multi-Threaded Request Handling
 
 This feature is by far the most important. If I tried going on a website and saw "You are `x` in queue." I would lose it. So this helps us handle user/client requests concurrently and in parallel. Ensuring that we are not handling requests one at a time. This feature taught me quite a bit on how threads work. I never worked with them before, but I am very glad to have finally been able to work on it now. I think I will definitely be using them again.
+
+## Fifth sync
+
+### Scanner-less parsing (Lexer-less parsing)
+
+So far, I've only set up a parser and made sure that it can receive my input streams. This part was not hard at all. Setting up JUnit tests is nothing new to me, and in this current version of the simple HTTP server. The parser doesn't actually have any logic. We'll see how easy the logic part actually is.
+
+## Parser Logic implementation
