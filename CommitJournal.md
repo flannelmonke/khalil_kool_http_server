@@ -6,7 +6,7 @@ This project is a further study in the world of backend development. The framewo
 
 I am following a tutorial series from CodeFromScratch on YouTube, watch the first part [here](https://youtu.be/FNUdLeGfShU?si=iK85YJcIko2HyuXR).
 
-## My First Commit ()
+## My First Commit
 
 ---
 
@@ -65,5 +65,11 @@ This feature is by far the most important. If I tried going on a website and saw
 ### Scanner-less parsing (Lexer-less parsing)
 
 So far, I've only set up a parser and made sure that it can receive my input streams. This part was not hard at all. Setting up JUnit tests is nothing new to me, and in this current version of the simple HTTP server. The parser doesn't actually have any logic. We'll see how easy the logic part actually is.
+
+#### Parser configuration
+
+This should be about my sixth sync or so now. I haven't yet added the parser logic. This is because there were things I needed to define in my system first. Such as my parsing exceptions, my implemented HTTP status codes and my implemented HTTP methods. These are actually very important to define first before you start parsing different HTTP request methods. Because of the http 1.1 standard rfc 2616. To make an actual general use server there rules and specifications that must be met by a party. Such as required implemented methods. If you look at the timeline or even now, depending on the current time you are seeing this. You should be able to see a version of the HttpStatusCodes enum, only has around 5 or status codes and messages. Same for the HttpMethod enum. There is only two methods defined. This is because according http 1.1 standard rfc 2616, these are the methods and messages that are required for any and every server to have implemented.
+
+In my opinion, this helps a lot being a software developer. Sometimes, I feel as if I don't know where to start and the documentation provided by IETF showed me a great place to start.
 
 ## Parser Logic implementation
