@@ -27,6 +27,7 @@ public class configurationManager {
     /* 
     Used to load a config file by the given path
     */    
+    @SuppressWarnings("resource")
     public void loadConfigurationFile(String filePath){
 
         FileReader fileReader;
@@ -36,8 +37,8 @@ public class configurationManager {
             throw new HttpConfigurationException(e);            
         }
         
-        StringBuffer sb = new StringBuffer();
-        int i=0;
+        StringBuilder sb = new StringBuilder();
+        int i;
 
         try {
             while((i = fileReader.read())!=-1){
