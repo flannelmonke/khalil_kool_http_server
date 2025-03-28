@@ -17,8 +17,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import com.sun.media.jfxmedia.logging.Logger;
-
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class HttpParserTest {
 
@@ -44,6 +42,8 @@ public class HttpParserTest {
         assertNotNull(request);
         assertEquals(request.getMethod(), HttpMethod.GET);
         assertEquals(request.getRequestTarget(), "/");
+        assertEquals(request.getOriginalHttpVersion(), "HTTP/1.1");
+        assertEquals(request.getBestCompatibleVersion(), HttpVersion.HTTP_1_1);
     }
 
     @Test
@@ -102,6 +102,44 @@ public class HttpParserTest {
             fail();
         } catch (HttpParsingException e) {
             assertEquals(e.getErrorCode(), HttpStatusCodes.CLIENT_ERROR_400_BAD_REQUEST);
+        }
+
+    }
+
+    @Test
+    void testParseHttpRequestBadHttpVersion() {
+        try {
+            HttpRequest request = httpParser.parseHttpRequest(
+                    generateBadHttpVersionRequest());
+            fail();
+        } catch (HttpParsingException e) {
+            assertEquals(e.getErrorCode(), HttpStatusCodes.CLIENT_ERROR_400_BAD_REQUEST);
+        }
+
+    }
+
+    @Test
+    void testParseHttpRequestUnsupportedHttpVersion() {
+        try {
+            HttpRequest request = httpParser.parseHttpRequest(
+                    generateUnsupportedVersion());
+            fail();
+        } catch (HttpParsingException e) {
+            assertEquals(e.getErrorCode(), HttpStatusCodes.SERVER_ERROR_505_VERSION_NOT_SUPPORTED);
+        }
+
+    }
+
+    @Test
+    void testParseHttpRequestSupportedHttpVersion() {
+        try {
+            HttpRequest request = httpParser.parseHttpRequest(
+                    generateSupportedVersion());
+            assertNotNull(request);
+            assertEquals(request.getBestCompatibleVersion(), HttpVersion.HTTP_1_1);
+            assertEquals(request.getOriginalHttpVersion(), "HTTP/1.2");
+        } catch (HttpParsingException e) {
+            fail();
         }
 
     }
@@ -179,6 +217,33 @@ public class HttpParserTest {
                 )
 
         );
+        return inputStream;
+    }
+
+    private InputStream generateBadHttpVersionRequest() {
+        String rawData = "GET / HTP/1.1\r\n" + //
+                "Host: localhost:8080";
+        InputStream inputStream = new ByteArrayInputStream(
+                rawData.getBytes(
+                        StandardCharsets.US_ASCII));
+        return inputStream;
+    }
+
+    private InputStream generateUnsupportedVersion() {
+        String rawData = "GET / HTTP/2.1\r\n" + //
+                "Host: localhost:8080";
+        InputStream inputStream = new ByteArrayInputStream(
+                rawData.getBytes(
+                        StandardCharsets.US_ASCII));
+        return inputStream;
+    }
+
+    private InputStream generateSupportedVersion() {
+        String rawData = "GET / HTTP/1.2\r\n" + //
+                "Host: localhost:8080";
+        InputStream inputStream = new ByteArrayInputStream(
+                rawData.getBytes(
+                        StandardCharsets.US_ASCII));
         return inputStream;
     }
 

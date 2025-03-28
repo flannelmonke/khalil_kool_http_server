@@ -13,9 +13,18 @@ public class HttpRequest extends HttpMessage {
 
     private HttpMethod method;
     private String requestTarget;
-    private String httpVersion;
+    private String originalHttpVersion; // literal from the request
+    private HttpVersion bestCompatibleVersion;
 
     HttpRequest() {
+    }
+
+    public void setHttpVersion(String originalHttpVersion) throws BadHttpVersionException, HttpParsingException {
+        this.originalHttpVersion = originalHttpVersion;
+        this.bestCompatibleVersion = HttpVersion.getBestCompatibleVersion(originalHttpVersion);
+        if (this.bestCompatibleVersion == null) {
+            throw new HttpParsingException(HttpStatusCodes.SERVER_ERROR_505_VERSION_NOT_SUPPORTED);
+        }
     }
 
     public HttpMethod getMethod() {
@@ -42,6 +51,14 @@ public class HttpRequest extends HttpMessage {
 
     public String getRequestTarget() {
         return requestTarget;
+    }
+
+    public HttpVersion getBestCompatibleVersion() {
+        return bestCompatibleVersion;
+    }
+
+    public String getOriginalHttpVersion() {
+        return originalHttpVersion;
     }
 
 }
