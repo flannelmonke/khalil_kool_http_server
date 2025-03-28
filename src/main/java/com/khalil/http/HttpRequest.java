@@ -33,4 +33,15 @@ public class HttpRequest extends HttpMessage {
                 HttpStatusCodes.SERVER_ERROR_501_NOT_IMPLEMENTED);
     }
 
+    public void setTarget(String requestTarget) throws HttpParsingException {
+        if (requestTarget == null || requestTarget.length() == 0) {
+            throw new HttpParsingException(HttpStatusCodes.SERVER_ERROR_500_INTERNAL_SERVER_ERROR);
+        }
+        this.requestTarget = requestTarget;
+    }
+
+    public String getRequestTarget() {
+        return requestTarget;
+    }
+
 }
