@@ -9,12 +9,24 @@
  */
 package com.khalil.http;
 
+import java.util.HashMap;
+import java.util.Set;
+
 public class HttpRequest extends HttpMessage {
 
     private HttpMethod method;
     private String requestTarget;
     private String originalHttpVersion; // literal from the request
     private HttpVersion bestCompatibleVersion;
+    private final HashMap<String, String> headers = new HashMap<>();
+
+    public HashMap<String, String> getHeaders() {
+        return headers;
+    }
+
+    public void addHeader(String fieldName, String fieldValue) {
+        headers.put(fieldName.toLowerCase(), fieldValue);
+    }
 
     HttpRequest() {
     }
@@ -61,4 +73,11 @@ public class HttpRequest extends HttpMessage {
         return originalHttpVersion;
     }
 
+    public Set<String> getHeaderNames() {
+        return headers.keySet();
+    }
+
+    public String getHeader(String headerName) {
+        return headers.get(headerName.toLowerCase());
+    }
 }
